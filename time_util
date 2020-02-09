@@ -1,0 +1,61 @@
+# coding: utf-8
+
+"""
+python time所有转换用法
+"""
+import time
+import datetime as dt
+
+def dt_str2stamp(dt_str):
+    """
+    :param dt_str: dt-str to timestamp
+    :return:
+    """
+    # 转换成时间数组
+    time_array = time.strptime(dt_str, "%Y-%m-%d %H:%M:%S")
+    # 转换成时间戳
+    return int(time.mktime(time_array))
+
+def dt2stamp(dt):
+    return int(dt.timestamp())
+
+def stamp2dt(stamp):
+    """
+    秒时间戳转datetime
+    :param stamp:
+    :return: datetime
+    """
+    if len(str(stamp)) != 10:
+        assert "stamp is not 10 bit int"
+    return dt.datetime.fromtimestamp(stamp)
+
+def dt_str2dt(dt_str, format):
+    """
+    dt_str to dt
+    :param dt_str:
+    :param format:
+    :return: '%Y-%m-%d %H:%M:%S'、'%Y-%m-%d'
+    """
+    return dt.datetime.strptime(dt_str, format)
+
+def dt2dt_str(dt, format):
+    """
+    dt to dt_str
+    :param dt: datetime
+    :param format: '%Y-%m-%d %H:%M:%S'、'%Y-%m-%d'
+    :return:
+    """
+    return dt.strftime(format)
+
+# timedelta的参数days, seconds, microseconds, milliseconds, minutes, hours, weeks
+# datetime.today()、dt.datetime.now() 返回为当前datetime类型 dt.datetime.now().hour
+# 昨天时间戳
+today = dt.datetime.today()
+# yes_yesterday = today - dt.timedelta(days=1) 设置 hours、minutes、seconds 运输小时、分
+# 大昨天开始时间戳
+# yes_yest_start_t_stamp = int(time.mktime(time.strptime(str(yes_yesterday), '%Y-%m-%d %H:%M:%S')))
+# 昨天结束时间戳 今天起始
+# today_start_stamp = int(time.mktime(time.strptime(str(today), '%Y-%m-%d %H:%M:%S'))) - 1
+# 当前时间戳 now_stamp = int(time.time())
+
+
